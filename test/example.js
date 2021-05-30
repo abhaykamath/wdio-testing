@@ -1,6 +1,6 @@
 describe('First Steps with WebdriverIO', () => {
-    it('Load YouTube Website', () => {
-        browser.url('http://example.com/')
+    it('Load Example Website', () => {
+        browser.url('http://youtube.com/')
         browser.pause(5000);
     })
 
