@@ -1,28 +1,33 @@
-describe('First Steps with WebdriverIO', () => {
-    it('Load Example Website', () => {
-        browser.url('http://youtube.com/')
-        browser.pause(5000);
-    })
-
-    it('Validate site Title', () => {
+describe('First Step with WebdriverIO', () => {
+    it('Open Example Website', () => {
+        browser.url('http://www.example.com')
+        browser.pause(3000)
+        expect(browser).toHaveUrl('http://www.example.com/')
         expect(browser).toHaveTitle('Example Domain')
     })
-
-    it('H1 Should be present', () => {
-        // Get selector and save to a variable
+    
+    it('H1 Should be Visisble',  () => {
         const h1 = $('h1')
-        // Do assertion
+        h1.waitForExist()
         expect(h1).toBePresent()
-
     })
 
-    it('P tag should be present', () => {
+    it('P Should be Visisble', () => {
         const p = $('p')
+        p.waitForExist()
         expect(p).toBePresent()
     })
 
-    it('Check link value', () => {
+    it('Check Link Value', () => {
         const link = $('a')
         expect(link).toHaveLink('https://www.iana.org/domains/example')
+    })
+
+    it('Get Element Text', () => {
+        const text = $('h1').getText()
+        const element = $('h1')
+        element.waitForExist()
+        expect(element).toHaveText(text)
+
     })
 })
