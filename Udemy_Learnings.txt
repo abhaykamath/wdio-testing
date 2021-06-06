@@ -1,0 +1,94 @@
+Automated Software Testing with webdriverIO
+
+Learning  Objectives
+1) Project Setup 
+2) Web Automation Testing
+3) Page Objects Model
+4) Advanced Concepts
+5) Visual Regression Testing (Using PercyIO Library)
+
+Example websites
+1) http://www.example.com
+2) http://www.devexpress.github.io/testcafe/example
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Project Setup (Getting Started & Environment Setup)
+
+1) First step is to initialize the project. So you start by typing "npm init" in the terminal.
+2) After the project is setup and package.json is created we need to install wdio cli package. "npm install --save-dev @wdio/cli"
+3) Next step is to generate wdio.config file. "npx wdio config" // To run you test "npx wdio run wdio.conf.js"
+4) Next we need to configure the wdio.conf.js file.
+	- change specs: [] | create a test folder in the root of the project and update it in specs
+	- If bail is set to 1 the test will be terminated with the first error it encounters
+	- Put "port: 4444," under reporters
+5) Install Prettier : "npm install --save-dev prettier"
+6) Next step is to install Babel so that we can use latest javascript features. For that we need to isntall 4 Babel packages.
+	- npm install --save-dev @babel/core @babel/cli @babel/preset-env @babel/register
+7) Next go to wdio.conf.js, under mochaOpts below timeout add "require: ['@babel/register']"
+
+Interaction With Web Elements
+
+1) Launch the chrome driver
+	Launching the website www.example.com
+	describe('First Steps with WebdriverIO', () => {
+    it('Load Example Website', () => {
+        browser.url('http://www.example.com')
+    })
+	})
+
+2) Assert Title and URL
+	expect(browser).toHaveUrl('http://www.youtube.com')
+	expect(browser).toHaveTitle('(720) YouTube')
+	
+3) Assert Elements
+	If you want to target any element with WebdriverIO you have to use $ and then pass the value of the selector
+	it('H1 Should be present', () => {
+        // Get selector and save to a variable
+        const h1 = $('h1')
+        // Do assertion
+        expect(h1).toBePresent()
+
+    })
+
+4) Assert Links	
+	it('Check link value', () => {
+        const link = $('a')
+        expect(link).toHaveLink('https://www.iana.org/domains/example')
+    })
+	
+5) Explicit vs Implicit waits
+	Implicit waits are bad and they should be avoided.
+	$(selector).waitForExist({ timeout, reverse, timeoutMsg, interval })
+	
+6) Get Element Text
+	
+	it('Get Element Text', () => {
+        const text = $('h1').getText()
+        const element = $('h1')
+        element.waitForExist()
+        expect(element).toHaveText(text)
+
+    })
+
+7) Get Element Attributes
+	
+	it('Assert Attributes', () => {
+		browser.url('http://devexpress.github.io/testcafe/example/')
+		const button = $('#submit-button')
+		button.waitForExist()
+		expect(button).toHaveAttrContaining('type', 'submit')
+	})
+
+8) Get Element Value
+
+
+9) Changr View port
+
+    it('Change Browser Viewport', () => {
+        browser.setWindowSize(800, 600)
+        browser.pause(1000)
+    })
+
+	

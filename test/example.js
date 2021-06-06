@@ -1,3 +1,5 @@
+import {mobile, tablet, desktop } from '../lib/devices'
+
 describe('First Step with WebdriverIO', () => {
     it('Open Example Website', () => {
         browser.url('http://www.example.com')
@@ -29,5 +31,25 @@ describe('First Step with WebdriverIO', () => {
         element.waitForExist()
         expect(element).toHaveText(text)
 
+    })
+
+    it('Change Browser Viewport', () => {
+        browser.setWindowSize(800, 600)
+        browser.pause(1000)
+    })
+
+    it('Set Mobile View', () => {
+        browser.setWindowSize(mobile[0], mobile[1])
+        browser.pause(2000)
+    })
+
+    it('Set Tablet View', () => {
+        browser.setWindowSize(tablet[0], tablet[1])
+        browser.pause(2000)
+    })
+
+    it('Set Desktop View', () => {
+        browser.setWindowSize(desktop[0], desktop[1])
+        browser.pause(2000)
     })
 })
