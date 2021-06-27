@@ -27,9 +27,7 @@ exports.config = {
         './test/**.js'
     ],
     // Patterns to exclude.
-    exclude: [
-         './test/example.js'
-    ],
+    exclude: ['./test/example.js', './test/actions.js'],
     //
     // ============
     // Capabilities
